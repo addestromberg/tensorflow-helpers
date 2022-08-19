@@ -287,3 +287,16 @@ def calculate_results(y_true, y_pred):
                   "recall": model_recall,
                   "f1": model_f1}
   return model_results
+
+def compare_result(compare_list):
+  """
+  Plots a chart to compare results of validation accuracy of trained models.
+
+  args:
+    compare_list (list of tf.history objects) List of results to compare with accuracy metric.
+  """
+  plt.figure()
+  for hist in compare_list:
+    plt.plot(hist.epoch, hist.history["val_accuracy"], label=hist.model.name)
+  plt.legend()
+  plt.title("Compare Validation Accuracy", size=15)
